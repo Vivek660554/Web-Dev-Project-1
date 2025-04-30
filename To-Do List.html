@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        input[type="text"] {
+            width: 250px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #fff;
+            margin: 10px auto;
+            padding: 10px;
+            width: 300px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: left;
+            position: relative;
+        }
+        li span {
+            position: absolute;
+            right: 10px;
+            color: red;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>My To-Do List</h1>
+
+    <input type="text" id="taskInput" placeholder="Enter a new task">
+    <button onclick="addTask()">Add</button>
+
+    <ul id="taskList">
+        <!-- Tasks will appear here -->
+    </ul>
+
+    <script>
+        function addTask() {
+            var input = document.getElementById("taskInput");
+            var taskText = input.value.trim();
+
+            if (taskText === "") {
+                alert("Please enter a task!");
+                return;
+            }
+
+            var li = document.createElement("li");
+            li.innerHTML = taskText + " <span onclick='deleteTask(this)'>&times;</span>";
+
+            document.getElementById("taskList").appendChild(li);
+
+            input.value = ""; // Clear input box
+        }
+
+        function deleteTask(element) {
+            element.parentElement.remove();
+        }
+    </script>
+
+</body>
+</html>
